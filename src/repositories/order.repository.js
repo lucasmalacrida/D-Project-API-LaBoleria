@@ -14,3 +14,16 @@ export async function insertOrder(clientId, cakeId, quantity, totalPrice) {
     const result = await db.query(`INSERT INTO orders ("clientId", "cakeId", quantity, "totalPrice") VALUES ($1,$2,$3,$4);`, [clientId, cakeId, quantity, totalPrice]);
     return result;
 }
+
+export async function selectOrders(date) {
+    const result = await db.query(`
+        SELECT orders.*,
+            clients.name AS "clientName", clients.address AS address, clients.phone AS phone,
+            cakes.name AS "cakeName", cakes.price AS price, cakes.description AS description, cakes.image AS image
+        FROM orders
+        JOIN clients ON clients.id = orders."clientId"
+        JOIN cakes ON cakes.id = orders."cakeId"
+        ${date? 'WHERE DATE(orders."createdAt") = $1': ''}
+        ;`, [date]);
+    return result;
+}

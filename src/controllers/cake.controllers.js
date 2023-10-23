@@ -1,5 +1,4 @@
-import { searchCake } from "../repositories/cake.repository.js";
-import { insertCake } from "../repositories/cake.repository.js";
+import { searchCake, insertCake } from "../repositories/cake.repository.js";
 
 export async function postCake(req, res) {
     const { name, price, image, description } = req.body;

@@ -1,5 +1,4 @@
-import { searchClient } from "../repositories/client.repository.js";
-import { insertClient } from "../repositories/client.repository.js";
+import { searchClient, insertClient } from "../repositories/client.repository.js";
 
 export async function postClient(req, res) {
     const { name, address, phone } = req.body;
