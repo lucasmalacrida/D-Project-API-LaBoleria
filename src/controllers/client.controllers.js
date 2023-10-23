@@ -1,4 +1,4 @@
-import db from "../Database/databaseConnection.js";
+import db from "../database/database.connection.js";
 
 export async function postClient(req, res) {
     const { name, address, phone } = req.body;
@@ -9,7 +9,7 @@ export async function postClient(req, res) {
         if (client.rowCount > 0) { return res.sendStatus(409) }
 
         // Post DB
-        await db.query(`INSERT INTO users (name, address, phone) VALUES ($1,$2,$3);`, [name, address, phone]);
+        await db.query(`INSERT INTO clients (name, address, phone) VALUES ($1,$2,$3);`, [name, address, phone]);
         res.sendStatus(201);
     } catch (err) {
         res.status(500).send(err.message);

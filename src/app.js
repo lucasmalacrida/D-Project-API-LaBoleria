@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import router from './Routes/indexRouter.js';
+import router from './routes/index.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
