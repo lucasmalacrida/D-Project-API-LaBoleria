@@ -11,7 +11,7 @@ export async function postOrder(req, res) {
         if (cake.rowCount === 0) { return res.sendStatus(404) }
 
         // Post DB
-        const totalPrice = quantity * cake.rows[0].price;
+        const totalPrice = Number(quantity * cake.rows[0].price);
         await insertOrder(clientId, cakeId, quantity, totalPrice);
         res.sendStatus(201);
     } catch (err) {
