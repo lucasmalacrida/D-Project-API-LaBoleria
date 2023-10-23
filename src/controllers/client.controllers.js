@@ -6,11 +6,11 @@ export async function postClient(req, res) {
 
     try {
         // Validations
-        const client = searchClient(phone);
+        const client = await searchClient(phone);
         if (client.rowCount > 0) { return res.sendStatus(409) }
 
         // Post DB
-        insertClient(req.body);
+        await insertClient(req.body);
         res.sendStatus(201);
     } catch (err) {
         res.status(500).send(err.message);
